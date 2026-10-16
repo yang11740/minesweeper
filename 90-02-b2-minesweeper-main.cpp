@@ -1,4 +1,3 @@
-/* 2352475 ¼Æ¿Æ Ò×Ñô */
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <iomanip>
@@ -7,8 +6,8 @@
 #include <conio.h>  
 #include <math.h>
 #include <time.h>
-#include "../include/cmd_console_tools.h"
-#include "../include/cmd_gmw_tools.h"
+#include "cmd_console_tools.h"
+#include "cmd_gmw_tools.h"
 using namespace std;
 
 #define ROW_MAX 16
@@ -26,7 +25,7 @@ void input(int& row, int& col, int& num)
 	char sel;
 	while (1) {
 		cct_gotoxy(0, 0);
-		cout << "ÇëÊäÈëÉ¨À×ÓÎÏ·µÄµÈ¼¶£¨Êı×Ö£©£¬³õ¼¶\\ÖĞ¼¶\\¸ß¼¶£¨1\\2\\3£©";
+		cout << "è¯·è¾“å…¥æ‰«é›·æ¸¸æˆçš„ç­‰çº§ï¼ˆæ•°å­—ï¼‰ï¼Œåˆçº§\\ä¸­çº§\\é«˜çº§ï¼ˆ1\\2\\3ï¼‰";
 		sel = _getche();
 		if ('1' == sel || '2' == sel || '3' == sel) {
 			break;
@@ -162,13 +161,13 @@ int play_by_mouse(const CONSOLE_GRAPHICS_INFO* const pCGI, struct RAND str[ROW_M
 	cct_setcursor(CURSOR_INVISIBLE);
 	cct_enable_mouse();
 	while (1) {
-		sprintf(temp, "ESCÍË³ö£¬¿Õ¸ñÏÔÊ¾Ê±¼ä");
+		sprintf(temp, "ESCé€€å‡ºï¼Œç©ºæ ¼æ˜¾ç¤ºæ—¶é—´");
 		if (time_sign) {
-			sprintf(temp1, "µ±Ç°Ê±¼ä£º%.6lfÃë£¬", double(end.QuadPart - begin.QuadPart) / tick.QuadPart);
+			sprintf(temp1, "å½“å‰æ—¶é—´ï¼š%.6lfç§’ï¼Œ", double(end.QuadPart - begin.QuadPart) / tick.QuadPart);
 			time_sign = 0;
 		}
 		else {
-			sprintf(temp1, "Ê£ÓàÀ×Êı£º%d£¬", n);
+			sprintf(temp1, "å‰©ä½™é›·æ•°ï¼š%dï¼Œ", n);
 		}
 		gmw_status_line(pCGI, TOP_STATUS_LINE, temp, temp1);
 		if (n_true == num && n_show == pCGI->row_num * pCGI->col_num - num) {
@@ -180,7 +179,7 @@ int play_by_mouse(const CONSOLE_GRAPHICS_INFO* const pCGI, struct RAND str[ROW_M
 				return -1;
 			}
 			if (keycode1 == 32) {
-				QueryPerformanceCounter(&end);//»ñµÃÖÕÖ¹Ó²¼ş¶¨Ê±Æ÷¼ÆÊı
+				QueryPerformanceCounter(&end);//è·å¾—ç»ˆæ­¢ç¡¬ä»¶å®šæ—¶å™¨è®¡æ•°
 				time_sign = 1;
 			}
 		}
@@ -254,7 +253,7 @@ int main()
 	input(row, col, num);
 	gmw_set_rowcol(&MyCGI, row, col);
 	gmw_set_frame_color(&MyCGI, COLOR_HWHITE, COLOR_BLACK);
-	gmw_set_font(&MyCGI, "ĞÂËÎÌå", 16, 0);
+	gmw_set_font(&MyCGI, "æ–°å®‹ä½“", 16, 0);
 	gmw_set_frame_style(&MyCGI, 4, 2, true);
 	gmw_set_rowno_switch(&MyCGI, true);
 	gmw_set_colno_switch(&MyCGI, true);
@@ -286,27 +285,27 @@ int main()
 				gmw_draw_block(&MyCGI, i, j, 0, bdi);
 			}
 		}
-		sprintf(temp, "ESCÍË³ö£¬¿Õ¸ñÏÔÊ¾Ê±¼ä");
+		sprintf(temp, "ESCé€€å‡ºï¼Œç©ºæ ¼æ˜¾ç¤ºæ—¶é—´");
 		gmw_status_line(&MyCGI, TOP_STATUS_LINE, temp);
 
-		QueryPerformanceFrequency(&tick);	//»ñµÃÊ±ÖÓÆµÂÊ
-		QueryPerformanceCounter(&begin);	//»ñµÃ³õÊ¼Ó²¼ş¶¨Ê±Æ÷¼ÆÊı
+		QueryPerformanceFrequency(&tick);	//è·å¾—æ—¶é’Ÿé¢‘ç‡
+		QueryPerformanceCounter(&begin);	//è·å¾—åˆå§‹ç¡¬ä»¶å®šæ—¶å™¨è®¡æ•°
 
 		ret = play_by_mouse(&MyCGI, mine, bdi, num, tick, begin);
 		if (ret == -1) {
 			break;
 		}
 		else if (ret == 0) {
-			QueryPerformanceCounter(&end);//»ñµÃÖÕÖ¹Ó²¼ş¶¨Ê±Æ÷¼ÆÊı
-			sprintf(temp, "ÄãÊäÁË£¬ÓÎÏ·½áÊø");
-			sprintf(temp1, "¹²ÓÃÊ±£º%.6lfÃë£¬", double(end.QuadPart - begin.QuadPart) / tick.QuadPart);
+			QueryPerformanceCounter(&end);//è·å¾—ç»ˆæ­¢ç¡¬ä»¶å®šæ—¶å™¨è®¡æ•°
+			sprintf(temp, "ä½ è¾“äº†ï¼Œæ¸¸æˆç»“æŸ");
+			sprintf(temp1, "å…±ç”¨æ—¶ï¼š%.6lfç§’ï¼Œ", double(end.QuadPart - begin.QuadPart) / tick.QuadPart);
 			gmw_status_line(&MyCGI, LOWER_STATUS_LINE, temp,temp1);
 			break;
 		}
 		else if (ret == 1) {
-			QueryPerformanceCounter(&end);//»ñµÃÖÕÖ¹Ó²¼ş¶¨Ê±Æ÷¼ÆÊı
-			sprintf(temp, "¹§Ï²Ê¤Àû£¡ÓÎÏ·½áÊø");
-			sprintf(temp1, "¹²ÓÃÊ±£º%.6lfÃë£¬", double(end.QuadPart - begin.QuadPart) / tick.QuadPart);
+			QueryPerformanceCounter(&end);//è·å¾—ç»ˆæ­¢ç¡¬ä»¶å®šæ—¶å™¨è®¡æ•°
+			sprintf(temp, "æ­å–œèƒœåˆ©ï¼æ¸¸æˆç»“æŸ");
+			sprintf(temp1, "å…±ç”¨æ—¶ï¼š%.6lfç§’ï¼Œ", double(end.QuadPart - begin.QuadPart) / tick.QuadPart);
 			gmw_status_line(&MyCGI, LOWER_STATUS_LINE, temp, temp1);
 			break;
 		}
