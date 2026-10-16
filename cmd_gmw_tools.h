@@ -1,302 +1,301 @@
-/* 2352475 Ò×Ñô ¼Æ¿Æ */
 #pragma once
 #include <iostream>
 #include "cmd_console_tools.h"
 using namespace std;
 
-/* ¶¨Òå×´Ì¬À¸ĞÅÏ¢ */
-#define TOP_STATUS_LINE			0	//ÉÏ×´Ì¬À¸£¬Î»ÖÃ¹Ì¶¨ÔÚÓÎÏ·Ö÷¿ò¼ÜÇøÓòµÄ×îÉÏ·½£¨Èç¹ûÓĞÁĞ±ê£¬ÔòÔÚÁĞ±êÖ®ÉÏ£©
-#define LOWER_STATUS_LINE		1   //ÉÏ×´Ì¬À¸£¬Î»ÖÃ¹Ì¶¨ÔÚÓÎÏ·Ö÷¿ò¼ÜÇøÓòµÄ×îÏÂ·½
+/* å®šä¹‰çŠ¶æ€æ ä¿¡æ¯ */
+#define TOP_STATUS_LINE			0	//ä¸ŠçŠ¶æ€æ ï¼Œä½ç½®å›ºå®šåœ¨æ¸¸æˆä¸»æ¡†æ¶åŒºåŸŸçš„æœ€ä¸Šæ–¹ï¼ˆå¦‚æœæœ‰åˆ—æ ‡ï¼Œåˆ™åœ¨åˆ—æ ‡ä¹‹ä¸Šï¼‰
+#define LOWER_STATUS_LINE		1   //ä¸ŠçŠ¶æ€æ ï¼Œä½ç½®å›ºå®šåœ¨æ¸¸æˆä¸»æ¡†æ¶åŒºåŸŸçš„æœ€ä¸‹æ–¹
 
-/* ¶¨ÒåÃèÊö×´Ì¬À¸ĞÅÏ¢µÄ½á¹¹Ìå */
+/* å®šä¹‰æè¿°çŠ¶æ€æ ä¿¡æ¯çš„ç»“æ„ä½“ */
 typedef struct _status_line_info_ {
-	/* ¡¾ÏÂÃæ¶¨ÒåµÄÊÇ¿ÉÍ¨¹ıÉèÖÃº¯Êı¸Ä±äµÄÖµ£¬²»×¼ĞŞ¸Ä³ÉÔ±Ãû¡¿ */
+	/* ã€ä¸‹é¢å®šä¹‰çš„æ˜¯å¯é€šè¿‡è®¾ç½®å‡½æ•°æ”¹å˜çš„å€¼ï¼Œä¸å‡†ä¿®æ”¹æˆå‘˜åã€‘ */
 
-	/* ÊÇ·ñÓĞÉÏÏÂ×´Ì¬À¸ */
+	/* æ˜¯å¦æœ‰ä¸Šä¸‹çŠ¶æ€æ  */
 	bool is_top_status_line;
 	bool is_lower_status_line;
 
-	char pad1[2];	//Ìî³ä×Ö½Ú£¬ÎªÁË´ÕÆë4×Ö½Ú
+	char pad1[2];	//å¡«å……å­—èŠ‚ï¼Œä¸ºäº†å‡‘é½4å­—èŠ‚
 
-	/* ÉÏ×´Ì¬À¸µÄÎ»ÖÃ */
+	/* ä¸ŠçŠ¶æ€æ çš„ä½ç½® */
 	int top_start_x;
 	int top_start_y;
 
-	/* ÉÏ×´Ì¬À¸Õı³£ĞÅÏ¢ÅäÉ« */
+	/* ä¸ŠçŠ¶æ€æ æ­£å¸¸ä¿¡æ¯é…è‰² */
 	int top_normal_bgcolor;
 	int top_normal_fgcolor;
 
-	/* ÉÏ×´Ì¬À¸ĞÑÄ¿ĞÅÏ¢ÅäÉ« */
+	/* ä¸ŠçŠ¶æ€æ é†’ç›®ä¿¡æ¯é…è‰² */
 	int top_catchy_bgcolor;
 	int top_catchy_fgcolor;
 
-	/* ÏÂ×´Ì¬À¸µÄÎ»ÖÃ */
+	/* ä¸‹çŠ¶æ€æ çš„ä½ç½® */
 	int lower_start_x;
 	int lower_start_y;
 
-	/* ÉÏ×´Ì¬À¸Õı³£ĞÅÏ¢ÅäÉ« */
+	/* ä¸ŠçŠ¶æ€æ æ­£å¸¸ä¿¡æ¯é…è‰² */
 	int lower_normal_bgcolor;
 	int lower_normal_fgcolor;
 
-	/* ÉÏ×´Ì¬À¸ĞÑÄ¿ĞÅÏ¢ÅäÉ« */
+	/* ä¸ŠçŠ¶æ€æ é†’ç›®ä¿¡æ¯é…è‰² */
 	int lower_catchy_bgcolor;
 	int lower_catchy_fgcolor;
 
-	/* ¡¾ÏÂÃæÕâ¸öÖµÊÇ cmd_tgmw_tools.lib ĞèÒªÓÃµ½µÄ½á¹¹Ìå³ÉÔ±£¬Õâ¸öÖµÊÇÄÚ²¿¼ÆËãµÃµ½µÄ£¬²»ÊÇÖ±½ÓÉèÖÃÖµ£¬
-		 ¿ÉÒÔ²»ÓÃ£¬µ«ÊÇ²»×¼É¾³ı£¬·ñÔòcmd_tgmw_tools.libÖĞµÄº¯Êıµ÷ÓÃÊ±¿ÉÄÜ³ö´í¡¿ */
+	/* ã€ä¸‹é¢è¿™ä¸ªå€¼æ˜¯ cmd_tgmw_tools.lib éœ€è¦ç”¨åˆ°çš„ç»“æ„ä½“æˆå‘˜ï¼Œè¿™ä¸ªå€¼æ˜¯å†…éƒ¨è®¡ç®—å¾—åˆ°çš„ï¼Œä¸æ˜¯ç›´æ¥è®¾ç½®å€¼ï¼Œ
+		 å¯ä»¥ä¸ç”¨ï¼Œä½†æ˜¯ä¸å‡†åˆ é™¤ï¼Œå¦åˆ™cmd_tgmw_tools.libä¸­çš„å‡½æ•°è°ƒç”¨æ—¶å¯èƒ½å‡ºé”™ã€‘ */
 
-		 /* ×´Ì¬À¸ËùÕ¼µÄ¿í¶È£¨¸ÃÖµÓÉ¼ÆËãµÃµ½£¬ÊÇÓÎÏ·ÇøÓòµÄ¿í¶È£¬²»°üÀ¨À©Õ¹ÇøÓò£¬ĞÅÏ¢³¬¹ı¿í¶ÈÔò½Ø¶Ï£© */
+		 /* çŠ¶æ€æ æ‰€å çš„å®½åº¦ï¼ˆè¯¥å€¼ç”±è®¡ç®—å¾—åˆ°ï¼Œæ˜¯æ¸¸æˆåŒºåŸŸçš„å®½åº¦ï¼Œä¸åŒ…æ‹¬æ‰©å±•åŒºåŸŸï¼Œä¿¡æ¯è¶…è¿‡å®½åº¦åˆ™æˆªæ–­ï¼‰ */
 	int width;
 
-	/* ¡¾ÏÂÃæÔÊĞíÌí¼ÓÄãÈÏÎªĞèÒªµÄÖµ£¬ÕâĞ©Öµ²»ÄÜÍ¨¹ıÉèÖÃº¯ÊıÖ±½ÓÉèÖÃ£¨Àı£º¸ù¾İ¸÷ÖÖĞÅÏ¢Ëã³ö×´Ì¬À¸µÄ¿í¶È£¬ÓÃÓÚ¿ØÖÆÔÚÏÔÊ¾×´Ì¬À¸ĞÅÏ¢Ê±²»Òª³¬¹ıÖ¸¶¨¿í¶È£©
-		 ÒòÎªÒıÈëÁË cmd_tgmw_tools.lib£¬ÎªÁË±£³ÖÁ½ÕßµÄ½á¹¹ÌåÒ»ÖÂ£¬ÉèÖÃÕâ²¿·Ö´óĞ¡Îª64×Ö½Ú£¨Ä¿Ç°ÊÇpad£©£¬
-		 Èç¹ûĞèÒªÌí¼ÓÏàÓ¦ÄÚÈİ£¬Çë±£³ÖÌí¼ÓÄÚÈİ+Ìî³ä×Ö½Ú=64×Ö½Ú£¬
-		   ÀıÈç£ºint data1;
+	/* ã€ä¸‹é¢å…è®¸æ·»åŠ ä½ è®¤ä¸ºéœ€è¦çš„å€¼ï¼Œè¿™äº›å€¼ä¸èƒ½é€šè¿‡è®¾ç½®å‡½æ•°ç›´æ¥è®¾ç½®ï¼ˆä¾‹ï¼šæ ¹æ®å„ç§ä¿¡æ¯ç®—å‡ºçŠ¶æ€æ çš„å®½åº¦ï¼Œç”¨äºæ§åˆ¶åœ¨æ˜¾ç¤ºçŠ¶æ€æ ä¿¡æ¯æ—¶ä¸è¦è¶…è¿‡æŒ‡å®šå®½åº¦ï¼‰
+		 å› ä¸ºå¼•å…¥äº† cmd_tgmw_tools.libï¼Œä¸ºäº†ä¿æŒä¸¤è€…çš„ç»“æ„ä½“ä¸€è‡´ï¼Œè®¾ç½®è¿™éƒ¨åˆ†å¤§å°ä¸º64å­—èŠ‚ï¼ˆç›®å‰æ˜¯padï¼‰ï¼Œ
+		 å¦‚æœéœ€è¦æ·»åŠ ç›¸åº”å†…å®¹ï¼Œè¯·ä¿æŒæ·»åŠ å†…å®¹+å¡«å……å­—èŠ‚=64å­—èŠ‚ï¼Œ
+		   ä¾‹å¦‚ï¼šint data1;
 				 int data2;
-				 char pad[56]; ¡¿ */
+				 char pad[56]; ã€‘ */
 	char pad[64];
 } STATUS_LINE_INFO;
 
-/* ´æ´¢ÓÎÏ·Ö÷¿ò¼Ü±ß¿òĞÅÏ¢µÄ×Ö·ûÊı×éµÄ³¤¶È£¨º¬Î²Áã£©
-   ×¢£ºÓÃ×Ö·ûÊı×é¶ø²»ÓÃÖ¸ÕëµÄÔ­ÒòÊÇÎªÁË½«À´¿ÉÒÔ´ÓÅäÖÃÎÄ¼şÖĞ¶Á */
+/* å­˜å‚¨æ¸¸æˆä¸»æ¡†æ¶è¾¹æ¡†ä¿¡æ¯çš„å­—ç¬¦æ•°ç»„çš„é•¿åº¦ï¼ˆå«å°¾é›¶ï¼‰
+   æ³¨ï¼šç”¨å­—ç¬¦æ•°ç»„è€Œä¸ç”¨æŒ‡é’ˆçš„åŸå› æ˜¯ä¸ºäº†å°†æ¥å¯ä»¥ä»é…ç½®æ–‡ä»¶ä¸­è¯» */
 #define CFI_LEN		3
 
-/* ¶¨ÒåÃèÊöÓÎÏ·Ö÷¿ò¼ÜÇøÓòµÄ½á¹¹Ìå */
+/* å®šä¹‰æè¿°æ¸¸æˆä¸»æ¡†æ¶åŒºåŸŸçš„ç»“æ„ä½“ */
 typedef struct _console_frame_info_ {
-	/* ¡¾ÏÂÃæ¶¨ÒåµÄÊÇ¿ÉÍ¨¹ıÉèÖÃº¯Êı¸Ä±äµÄÖµ£¬²»×¼ĞŞ¸Ä³ÉÔ±Ãû¡¿ */
+	/* ã€ä¸‹é¢å®šä¹‰çš„æ˜¯å¯é€šè¿‡è®¾ç½®å‡½æ•°æ”¹å˜çš„å€¼ï¼Œä¸å‡†ä¿®æ”¹æˆå‘˜åã€‘ */
 
-	/* ¶¨ÒåÓÎÏ·Ö÷¿ò¼ÜÇøÓòµÄ¸÷×é³ÉÔªËØµÄĞÎ×´
-	¨X ¨T ¨h ¨T ¨[
-	¨U          ¨U
-	¨c ¨T ©à ¨T ¨f
-	¨U          ¨U
-	¨^ ¨T ¨k ¨T ¨a */
-	char top_left[CFI_LEN];			// "¨X"
-	char lower_left[CFI_LEN];		// "¨^"
-	char top_right[CFI_LEN];			// "¨["
-	char lower_right[CFI_LEN];		// "¨a"
-	char h_normal[CFI_LEN];			// "¨T"	//Horizontal
-	char v_normal[CFI_LEN];			// "¨U"	//Vertical
-	char h_top_separator[CFI_LEN];	// "¨h"
-	char h_lower_separator[CFI_LEN];	// "¨k"
-	char v_left_separator[CFI_LEN];	// "¨c"
-	char v_right_separator[CFI_LEN];	// "¨f"
-	char mid_separator[CFI_LEN];		// "©à"
+	/* å®šä¹‰æ¸¸æˆä¸»æ¡†æ¶åŒºåŸŸçš„å„ç»„æˆå…ƒç´ çš„å½¢çŠ¶
+	â•” â• â•¤ â• â•—
+	â•‘          â•‘
+	â•Ÿ â• â”¼ â• â•¢
+	â•‘          â•‘
+	â•š â• â•§ â• â• */
+	char top_left[CFI_LEN];			// "â•”"
+	char lower_left[CFI_LEN];		// "â•š"
+	char top_right[CFI_LEN];			// "â•—"
+	char lower_right[CFI_LEN];		// "â•"
+	char h_normal[CFI_LEN];			// "â•"	//Horizontal
+	char v_normal[CFI_LEN];			// "â•‘"	//Vertical
+	char h_top_separator[CFI_LEN];	// "â•¤"
+	char h_lower_separator[CFI_LEN];	// "â•§"
+	char v_left_separator[CFI_LEN];	// "â•Ÿ"
+	char v_right_separator[CFI_LEN];	// "â•¢"
+	char mid_separator[CFI_LEN];		// "â”¼"
 
-	char pad1[3];	//Ìî³ä×Ö½Ú£¬ÎªÁË´ÕÆë36×Ö½Ú
+	char pad1[3];	//å¡«å……å­—èŠ‚ï¼Œä¸ºäº†å‡‘é½36å­—èŠ‚
 
-	/* ÓÎÏ·Ö÷¿ò¼ÜÇøÓòµÄ±³¾°É«ºÍÇ°¾°É« */
+	/* æ¸¸æˆä¸»æ¡†æ¶åŒºåŸŸçš„èƒŒæ™¯è‰²å’Œå‰æ™¯è‰² */
 	int bgcolor;
 	int fgcolor;
 
-	/* Ã¿¸öÉ«¿éµÄ¿í¶ÈºÍ¸ß¶È(×¢Òâ£º¿í¶È±ØĞëÊÇ2µÄ±¶Êı) */
+	/* æ¯ä¸ªè‰²å—çš„å®½åº¦å’Œé«˜åº¦(æ³¨æ„ï¼šå®½åº¦å¿…é¡»æ˜¯2çš„å€æ•°) */
 	int block_width;
 	int block_high;
 
-	/* É«¿éÖ®¼äÊÇ·ñĞèÒª·Ö¸ôÏß */
+	/* è‰²å—ä¹‹é—´æ˜¯å¦éœ€è¦åˆ†éš”çº¿ */
 	bool separator;
-	char pad2[3];	//Ìî³ä×Ö½Ú£¬ÎªÁË´ÕÆë56×Ö½Ú
+	char pad2[3];	//å¡«å……å­—èŠ‚ï¼Œä¸ºäº†å‡‘é½56å­—èŠ‚
 
-	/* ¡¾ÏÂÃæÕâ¼¸¸öÖµÊÇcmd_tgmw_tools.libĞèÒªÓÃµ½µÄ½á¹¹Ìå³ÉÔ±£¬ÕâĞ©Öµ¶¼ÊÇÄÚ²¿¼ÆËãµÃµ½µÄ£¬²»ÊÇÖ±½ÓÉèÖÃÖµ£¬
-		 ¿ÉÒÔ²»ÓÃ£¬µ«ÊÇ²»×¼É¾³ı£¬·ñÔòcmd_tgmw_tools.libÖĞµÄº¯Êıµ÷ÓÃÊ±¿ÉÄÜ³ö´í¡¿ */
-		 /* Ã¿¸öÉ«¿éµÄ¸½¼ÓµÄ¿í¶ÈºÍ¸ß¶È(ÓĞ·Ö¸ôÏßÊÇ·Ö±ğÎª2/1)£¬ÓÉseparator¼ÆËã¶øÀ´ */
+	/* ã€ä¸‹é¢è¿™å‡ ä¸ªå€¼æ˜¯cmd_tgmw_tools.libéœ€è¦ç”¨åˆ°çš„ç»“æ„ä½“æˆå‘˜ï¼Œè¿™äº›å€¼éƒ½æ˜¯å†…éƒ¨è®¡ç®—å¾—åˆ°çš„ï¼Œä¸æ˜¯ç›´æ¥è®¾ç½®å€¼ï¼Œ
+		 å¯ä»¥ä¸ç”¨ï¼Œä½†æ˜¯ä¸å‡†åˆ é™¤ï¼Œå¦åˆ™cmd_tgmw_tools.libä¸­çš„å‡½æ•°è°ƒç”¨æ—¶å¯èƒ½å‡ºé”™ã€‘ */
+		 /* æ¯ä¸ªè‰²å—çš„é™„åŠ çš„å®½åº¦å’Œé«˜åº¦(æœ‰åˆ†éš”çº¿æ˜¯åˆ†åˆ«ä¸º2/1)ï¼Œç”±separatorè®¡ç®—è€Œæ¥ */
 	int block_width_ext;
 	int block_high_ext;
 
-	/* Ã¿ĞĞ/Ã¿ÁĞº¬·Ö¸ôÏßµÄ×Ü¿í¶È£¬ÓÉ¿í¶È/¸ß¶È+·Ö¸ôÏß¼ÆËã¶øÀ´ */
+	/* æ¯è¡Œ/æ¯åˆ—å«åˆ†éš”çº¿çš„æ€»å®½åº¦ï¼Œç”±å®½åº¦/é«˜åº¦+åˆ†éš”çº¿è®¡ç®—è€Œæ¥ */
 	int bwidth;
 	int bhigh;
 
-	/* ¡¾ÏÂÃæÔÊĞíÌí¼ÓÄãÈÏÎªĞèÒªµÄÖµ£¬ÕâĞ©Öµ²»ÄÜÍ¨¹ıÉèÖÃº¯ÊıÖ±½ÓÉèÖÃ£¬Ö»ÊÇÎªÁË·½±ã³ÌĞòÖĞµ÷ÓÃ(²»ĞèÒªÃ¿´ÎÖØ¸´¼ÆËã)
-		 ÒòÎªÒıÈëÁË cmd_tgmw_tools.lib£¬ÎªÁË±£³ÖÁ½ÕßµÄ½á¹¹ÌåÒ»ÖÂ£¬ÉèÖÃÕâ²¿·Ö´óĞ¡Îª64×Ö½Ú£¨Ä¿Ç°ÊÇpad£©£¬
-		 Èç¹ûĞèÒªÌí¼ÓÏàÓ¦ÄÚÈİ£¬Çë±£³ÖÌí¼ÓÄÚÈİ+Ìî³ä×Ö½Ú=64×Ö½Ú£¬
-		   ÀıÈç£ºint data1;
+	/* ã€ä¸‹é¢å…è®¸æ·»åŠ ä½ è®¤ä¸ºéœ€è¦çš„å€¼ï¼Œè¿™äº›å€¼ä¸èƒ½é€šè¿‡è®¾ç½®å‡½æ•°ç›´æ¥è®¾ç½®ï¼Œåªæ˜¯ä¸ºäº†æ–¹ä¾¿ç¨‹åºä¸­è°ƒç”¨(ä¸éœ€è¦æ¯æ¬¡é‡å¤è®¡ç®—)
+		 å› ä¸ºå¼•å…¥äº† cmd_tgmw_tools.libï¼Œä¸ºäº†ä¿æŒä¸¤è€…çš„ç»“æ„ä½“ä¸€è‡´ï¼Œè®¾ç½®è¿™éƒ¨åˆ†å¤§å°ä¸º64å­—èŠ‚ï¼ˆç›®å‰æ˜¯padï¼‰ï¼Œ
+		 å¦‚æœéœ€è¦æ·»åŠ ç›¸åº”å†…å®¹ï¼Œè¯·ä¿æŒæ·»åŠ å†…å®¹+å¡«å……å­—èŠ‚=64å­—èŠ‚ï¼Œ
+		   ä¾‹å¦‚ï¼šint data1;
 				 int data2;
-				 char pad[56]; ¡¿ */
+				 char pad[56]; ã€‘ */
 	char pad[64];
 
 } CONSOLE_FRAME_INFO;
 
-/* ´æ´¢É«¿ñ±ß¿òĞÅÏ¢µÄ×Ö·ûÊı×éµÄ³¤¶È£¨º¬Î²Áã£©
-   ×¢£ºÓÃ×Ö·ûÊı×é¶ø²»ÓÃÖ¸ÕëµÄÔ­ÒòÊÇÎªÁË½«À´¿ÉÒÔ´ÓÅäÖÃÎÄ¼şÖĞ¶Á */
+/* å­˜å‚¨è‰²ç‹‚è¾¹æ¡†ä¿¡æ¯çš„å­—ç¬¦æ•°ç»„çš„é•¿åº¦ï¼ˆå«å°¾é›¶ï¼‰
+   æ³¨ï¼šç”¨å­—ç¬¦æ•°ç»„è€Œä¸ç”¨æŒ‡é’ˆçš„åŸå› æ˜¯ä¸ºäº†å°†æ¥å¯ä»¥ä»é…ç½®æ–‡ä»¶ä¸­è¯» */
 #define CBI_LEN					3
 
-/* ¶¨ÒåÃèÊöÉ«¿éĞÅÏ¢µÄ½á¹¹Ìå */
+/* å®šä¹‰æè¿°è‰²å—ä¿¡æ¯çš„ç»“æ„ä½“ */
 typedef struct _console_block_info_ {
-	/* ¡¾ÏÂÃæ¶¨ÒåµÄÊÇ¿ÉÍ¨¹ıÉèÖÃº¯Êı¸Ä±äµÄÖµ£¬²»×¼ĞŞ¸Ä³ÉÔ±Ãû¡¿ */
+	/* ã€ä¸‹é¢å®šä¹‰çš„æ˜¯å¯é€šè¿‡è®¾ç½®å‡½æ•°æ”¹å˜çš„å€¼ï¼Œä¸å‡†ä¿®æ”¹æˆå‘˜åã€‘ */
 
-	/* ¶¨ÒåĞ¡±ß¿òµÄ¸÷×é³ÉÔªËØµÄĞÎ×´
-	¨X ¨T ¨[
-	¨U    ¨U
-	¨^ ¨T ¨a */
-	char top_left[CBI_LEN];			// "¨X"
-	char lower_left[CBI_LEN];		// "¨^"
-	char top_right[CBI_LEN];			// "¨["
-	char lower_right[CBI_LEN];		// "¨a"
-	char h_normal[CBI_LEN];			// "¨T"	//Horizontal
-	char v_normal[CBI_LEN];			// "¨U"	//Vertical
+	/* å®šä¹‰å°è¾¹æ¡†çš„å„ç»„æˆå…ƒç´ çš„å½¢çŠ¶
+	â•” â• â•—
+	â•‘    â•‘
+	â•š â• â• */
+	char top_left[CBI_LEN];			// "â•”"
+	char lower_left[CBI_LEN];		// "â•š"
+	char top_right[CBI_LEN];			// "â•—"
+	char lower_right[CBI_LEN];		// "â•"
+	char h_normal[CBI_LEN];			// "â•"	//Horizontal
+	char v_normal[CBI_LEN];			// "â•‘"	//Vertical
 
-	bool block_border;				//É«¿éÊÇ·ñĞèÒª±ß¿ò
-	bool pad1;						//Ìî³ä×Ö½Ú£¬ÎªÁË´ÕÆë20×Ö½Ú
+	bool block_border;				//è‰²å—æ˜¯å¦éœ€è¦è¾¹æ¡†
+	bool pad1;						//å¡«å……å­—èŠ‚ï¼Œä¸ºäº†å‡‘é½20å­—èŠ‚
 
-	/* ¡¾ÏÂÃæÔÊĞíÌí¼ÓÄãÈÏÎªĞèÒªµÄÖµ£¬ÕâĞ©Öµ²»ÄÜÍ¨¹ıÉèÖÃº¯ÊıÖ±½ÓÉèÖÃ£¬Ö»ÊÇÎªÁË·½±ã³ÌĞòÖĞµ÷ÓÃ(²»ĞèÒªÃ¿´ÎÖØ¸´¼ÆËã)
-		 ÒòÎªÒıÈëÁË cmd_tgmw_tools.lib£¬ÎªÁË±£³ÖÁ½ÕßµÄ½á¹¹ÌåÒ»ÖÂ£¬ÉèÖÃÕâ²¿·Ö´óĞ¡Îª64×Ö½Ú£¨Ä¿Ç°ÊÇpad£©£¬
-		 Èç¹ûĞèÒªÌí¼ÓÏàÓ¦ÄÚÈİ£¬Çë±£³ÖÌí¼ÓÄÚÈİ+Ìî³ä×Ö½Ú=64×Ö½Ú£¬
-		   ÀıÈç£ºint data1;
+	/* ã€ä¸‹é¢å…è®¸æ·»åŠ ä½ è®¤ä¸ºéœ€è¦çš„å€¼ï¼Œè¿™äº›å€¼ä¸èƒ½é€šè¿‡è®¾ç½®å‡½æ•°ç›´æ¥è®¾ç½®ï¼Œåªæ˜¯ä¸ºäº†æ–¹ä¾¿ç¨‹åºä¸­è°ƒç”¨(ä¸éœ€è¦æ¯æ¬¡é‡å¤è®¡ç®—)
+		 å› ä¸ºå¼•å…¥äº† cmd_tgmw_tools.libï¼Œä¸ºäº†ä¿æŒä¸¤è€…çš„ç»“æ„ä½“ä¸€è‡´ï¼Œè®¾ç½®è¿™éƒ¨åˆ†å¤§å°ä¸º64å­—èŠ‚ï¼ˆç›®å‰æ˜¯padï¼‰ï¼Œ
+		 å¦‚æœéœ€è¦æ·»åŠ ç›¸åº”å†…å®¹ï¼Œè¯·ä¿æŒæ·»åŠ å†…å®¹+å¡«å……å­—èŠ‚=64å­—èŠ‚ï¼Œ
+		   ä¾‹å¦‚ï¼šint data1;
 				 int data2;
-				 char pad[56]; ¡¿ */
+				 char pad[56]; ã€‘ */
 	char pad[64];
 
 } CONSOLE_BLOCK_INFO;
 
-/* ¶¨Òå BLOCK_DISPLAY_INFO Êı×éÖĞ±íÊ¾ ¿Õ°×µÄÌØÊâÖµ/½áÊøµÄÌØÊâÖµ */
-#define BDI_VALUE_BLANK		0		//´ú±í¿Õ°×µÄÌØÊâÖµ
-#define BDI_VALUE_END		-999		//´ú±í½áÊøµÄÌØÊâÖµ
+/* å®šä¹‰ BLOCK_DISPLAY_INFO æ•°ç»„ä¸­è¡¨ç¤º ç©ºç™½çš„ç‰¹æ®Šå€¼/ç»“æŸçš„ç‰¹æ®Šå€¼ */
+#define BDI_VALUE_BLANK		0		//ä»£è¡¨ç©ºç™½çš„ç‰¹æ®Šå€¼
+#define BDI_VALUE_END		-999		//ä»£è¡¨ç»“æŸçš„ç‰¹æ®Šå€¼
 
-/* ¶¨ÒåÉ«¿éÏÔÊ¾Ê±£¬ÄÚ²¿Êı×éµÄintÖµÓë½çÃæÉÏÏÔÊ¾Í¼ĞÎµÄ¶ÔÓ¦¹ØÏµ
-   ×¢£º´Ë½á¹¹ÌåÊı×éµÄÖµÔÚ²âÊÔÓÃÀıÖĞ¶¨Òå£¬Ëæ×ÅÓÎÏ·µÄ²»Í¬¶ø²»Í¬ */
+/* å®šä¹‰è‰²å—æ˜¾ç¤ºæ—¶ï¼Œå†…éƒ¨æ•°ç»„çš„intå€¼ä¸ç•Œé¢ä¸Šæ˜¾ç¤ºå›¾å½¢çš„å¯¹åº”å…³ç³»
+   æ³¨ï¼šæ­¤ç»“æ„ä½“æ•°ç»„çš„å€¼åœ¨æµ‹è¯•ç”¨ä¾‹ä¸­å®šä¹‰ï¼Œéšç€æ¸¸æˆçš„ä¸åŒè€Œä¸åŒ */
 typedef struct _block_display_info_ {
-	const int   value;	//ÒªÏÔÊ¾µÄÄÚ²¿Êı×éÖµ
-	const int   bgcolor;	//-1±íÊ¾ÓÃÓÎÏ·ÇøÓò±³¾°É«
-	const int   fgcolor;	//-1±íÊ¾ÓÃÓÎÏ·ÇøÓòÇ°¾°É«
-	const char* content;	//ÄÚ²¿Êı×éÖµ¶ÔÓ¦µÄÍ¼ĞÎ£¨Èç¹ûÎªNULL£¬ÔòÖ±½ÓÏÔÊ¾ÄÚ²¿Êı×éµÄÖµ£©
+	const int   value;	//è¦æ˜¾ç¤ºçš„å†…éƒ¨æ•°ç»„å€¼
+	const int   bgcolor;	//-1è¡¨ç¤ºç”¨æ¸¸æˆåŒºåŸŸèƒŒæ™¯è‰²
+	const int   fgcolor;	//-1è¡¨ç¤ºç”¨æ¸¸æˆåŒºåŸŸå‰æ™¯è‰²
+	const char* content;	//å†…éƒ¨æ•°ç»„å€¼å¯¹åº”çš„å›¾å½¢ï¼ˆå¦‚æœä¸ºNULLï¼Œåˆ™ç›´æ¥æ˜¾ç¤ºå†…éƒ¨æ•°ç»„çš„å€¼ï¼‰
 } BLOCK_DISPLAY_INFO;
 
-/* ¶¨ÒåÃèÊö×ÖÌå/×ÖºÅĞÅÏ¢µÄ½á¹¹Ìå */
-#define		FONTNAME_LEN	12	//×ÖÌåÃû³ÆµÄ×î´ó³¤¶È£¨º¬Î²Áã£©
+/* å®šä¹‰æè¿°å­—ä½“/å­—å·ä¿¡æ¯çš„ç»“æ„ä½“ */
+#define		FONTNAME_LEN	12	//å­—ä½“åç§°çš„æœ€å¤§é•¿åº¦ï¼ˆå«å°¾é›¶ï¼‰
 typedef struct _console_font_type_ {
 	char font_type[FONTNAME_LEN];
 	int  font_size_width;
 	int  font_size_high;
 } CONSOLE_FONT_TYPE;
 
-/* ¶¨ÒåÑÓÊ±µÄÖÖÀà */
-#define DELAY_OF_DRAW_FRAME		0	//»­ÓÎÏ·Ö÷¿ò¼ÜÊ±µÄÑÓÊ±
-#define DELAY_OF_DRAW_BLOCK		1	//»­É«¿éÊ±µÄÑÓÊ±
-#define DELAY_OF_BLOCK_MOVED		2	//É«¿éÒÆ¶¯Ê±µÄÑÓÊ±
+/* å®šä¹‰å»¶æ—¶çš„ç§ç±» */
+#define DELAY_OF_DRAW_FRAME		0	//ç”»æ¸¸æˆä¸»æ¡†æ¶æ—¶çš„å»¶æ—¶
+#define DELAY_OF_DRAW_BLOCK		1	//ç”»è‰²å—æ—¶çš„å»¶æ—¶
+#define DELAY_OF_BLOCK_MOVED		2	//è‰²å—ç§»åŠ¨æ—¶çš„å»¶æ—¶
 
-#define BLOCK_MOVED_DELAY_MS		15	//É«¿éÒÆ¶¯µÄÈ±Ê¡ÑÓÊ±£¬µ¥Î»ms£¨ÆäÓàÁ½¸öÈ±Ê¡Îª0£©
+#define BLOCK_MOVED_DELAY_MS		15	//è‰²å—ç§»åŠ¨çš„ç¼ºçœå»¶æ—¶ï¼Œå•ä½msï¼ˆå…¶ä½™ä¸¤ä¸ªç¼ºçœä¸º0ï¼‰
 
-/* ¶¨Òå³õÊ¼»¯±ê¼Ç */
+/* å®šä¹‰åˆå§‹åŒ–æ ‡è®° */
 #define CGI_INITED			99999
 
-/* ¶¨ÒåÃèÊöÕû¸ö´°¿ÚÈ«²¿ĞÅÏ¢µÄ½á¹¹Ìå */
+/* å®šä¹‰æè¿°æ•´ä¸ªçª—å£å…¨éƒ¨ä¿¡æ¯çš„ç»“æ„ä½“ */
 typedef struct _console_graphics_info_ {
-	/* ¡¾ÏÂÃæ¶¨ÒåµÄÊÇ¿ÉÍ¨¹ıÉèÖÃº¯Êı¸Ä±äµÄÖµ£¬²»×¼ĞŞ¸Ä³ÉÔ±Ãû¡¿ */
+	/* ã€ä¸‹é¢å®šä¹‰çš„æ˜¯å¯é€šè¿‡è®¾ç½®å‡½æ•°æ”¹å˜çš„å€¼ï¼Œä¸å‡†ä¿®æ”¹æˆå‘˜åã€‘ */
 
-	/* Ö÷¿ò¼ÜĞÅÏ¢ */
-	CONSOLE_FRAME_INFO CFI;		//136×Ö½Ú
+	/* ä¸»æ¡†æ¶ä¿¡æ¯ */
+	CONSOLE_FRAME_INFO CFI;		//136å­—èŠ‚
 
-	/* É«¿éĞÅÏ¢ */
-	CONSOLE_BLOCK_INFO CBI;		//84×Ö½Ú
+	/* è‰²å—ä¿¡æ¯ */
+	CONSOLE_BLOCK_INFO CBI;		//84å­—èŠ‚
 
-	/* ×´Ì¬À¸ĞÅÏ¢ */
-	STATUS_LINE_INFO SLI;		//120×Ö½Ú
+	/* çŠ¶æ€æ ä¿¡æ¯ */
+	STATUS_LINE_INFO SLI;		//120å­—èŠ‚
 
-	/* ×ÖÌåĞÅÏ¢ */
-	CONSOLE_FONT_TYPE CFT;		//20×Ö½Ú
+	/* å­—ä½“ä¿¡æ¯ */
+	CONSOLE_FONT_TYPE CFT;		//20å­—èŠ‚
 
-	/* ÊÇ·ñ½øĞĞ¹ı³õÊ¼»¯µÄ±ê¼Ç£¬Èç¹û³õÊ¼»¯¹ı£¬ÔòÉèÖÃÎª99999 £¨²»ÄÜÓÃtrue/falseÅĞ¶Ï£¬ÒòÎªËæ»úÖµµ±bool¾ÍÊÇtrue£©*/
+	/* æ˜¯å¦è¿›è¡Œè¿‡åˆå§‹åŒ–çš„æ ‡è®°ï¼Œå¦‚æœåˆå§‹åŒ–è¿‡ï¼Œåˆ™è®¾ç½®ä¸º99999 ï¼ˆä¸èƒ½ç”¨true/falseåˆ¤æ–­ï¼Œå› ä¸ºéšæœºå€¼å½“boolå°±æ˜¯trueï¼‰*/
 	int inited;
 
-	/* Õû¸öÍ¼ĞÎ½çÃæµÄÉÏÏÂ×óÓÒĞèÒªµÄ¶îÍâĞĞÁĞÊı */
+	/* æ•´ä¸ªå›¾å½¢ç•Œé¢çš„ä¸Šä¸‹å·¦å³éœ€è¦çš„é¢å¤–è¡Œåˆ—æ•° */
 	int extern_up_lines;
 	int extern_down_lines;
 	int extern_left_cols;
 	int extern_right_cols;
 
-	/* ÓÎÏ·Ö÷¿ò¼ÜÇøÓò°üº¬µÄÉ«¿éµÄĞĞÁĞÊı */
+	/* æ¸¸æˆä¸»æ¡†æ¶åŒºåŸŸåŒ…å«çš„è‰²å—çš„è¡Œåˆ—æ•° */
 	int row_num;
 	int col_num;
 
-	/* Õû¸öÍ¼ĞÎ½çÃæ£¨º¬Ö÷¿ò¼Ü¡¢ÉÏÏÂ×´Ì¬À¸¡¢ĞĞºÅÁĞ±ê¡¢¸½¼ÓĞĞÁĞ£©µÄ±³¾°É«ºÍÇ°¾°É« */
+	/* æ•´ä¸ªå›¾å½¢ç•Œé¢ï¼ˆå«ä¸»æ¡†æ¶ã€ä¸Šä¸‹çŠ¶æ€æ ã€è¡Œå·åˆ—æ ‡ã€é™„åŠ è¡Œåˆ—ï¼‰çš„èƒŒæ™¯è‰²å’Œå‰æ™¯è‰² */
 	int area_bgcolor;
 	int area_fgcolor;
 
-	/* ÊÇ·ñĞèÒªÉÏÏÂ×´Ì¬À¸
-	   - ×¢£ºtrue-ĞèÒª false-²»ĞèÒª
-	   -    Èç¹ûÉèÖÃÎªfalse£¬Ôò¼´Ê¹µ÷ÓÃÁË×´Ì¬ĞÂĞÅÏ¢ÏÔÊ¾º¯Êı£¬Ò²²»ÏÔÊ¾ÄÚÈİ£©
-	   - ºÍ STATUS_LINE_INFO ÖĞµÄ is_top_status_line / is_lower_status_line ÖØ¸´£¬Ö»ÒªÊÇ¿¼ÂÇµ½²»Í¬Î»ÖÃÊµÏÖÊ±µÄ·ÃÎÊ·½±ãĞÔ */
+	/* æ˜¯å¦éœ€è¦ä¸Šä¸‹çŠ¶æ€æ 
+	   - æ³¨ï¼štrue-éœ€è¦ false-ä¸éœ€è¦
+	   -    å¦‚æœè®¾ç½®ä¸ºfalseï¼Œåˆ™å³ä½¿è°ƒç”¨äº†çŠ¶æ€æ–°ä¿¡æ¯æ˜¾ç¤ºå‡½æ•°ï¼Œä¹Ÿä¸æ˜¾ç¤ºå†…å®¹ï¼‰
+	   - å’Œ STATUS_LINE_INFO ä¸­çš„ is_top_status_line / is_lower_status_line é‡å¤ï¼Œåªè¦æ˜¯è€ƒè™‘åˆ°ä¸åŒä½ç½®å®ç°æ—¶çš„è®¿é—®æ–¹ä¾¿æ€§ */
 	bool top_status_line;
 	bool lower_status_line;
 
-	/* ´òÓ¡Ö÷¿ò¼ÜÊ±ÊÇ·ñĞèÒªĞĞºÅÁĞ±ê */
+	/* æ‰“å°ä¸»æ¡†æ¶æ—¶æ˜¯å¦éœ€è¦è¡Œå·åˆ—æ ‡ */
 	bool draw_frame_with_row_no;
 	bool draw_frame_with_col_no;
 
-	/* ÑÓÊ±Ê±¼äÉèÖÃ */
-	int delay_of_draw_frame;		//»­Íâ¿òÊÇµÄÑÓÊ±
-	int delay_of_draw_block;		//»­ÓÎÏ·¿éµÄÑÓÊ±
-	int delay_of_block_moved;	//ÓÎÏ·¿éÒÆ¶¯µÄÑÓÊ±
+	/* å»¶æ—¶æ—¶é—´è®¾ç½® */
+	int delay_of_draw_frame;		//ç”»å¤–æ¡†æ˜¯çš„å»¶æ—¶
+	int delay_of_draw_block;		//ç”»æ¸¸æˆå—çš„å»¶æ—¶
+	int delay_of_block_moved;	//æ¸¸æˆå—ç§»åŠ¨çš„å»¶æ—¶
 
-	/* ¡¾ÏÂÃæÕâËÄ¸öÖµ²»ÊÇÍ¨¹ıÉèÖÃº¯ÊıÖ±½ÓÉèÖÃµÄ¡¿ */
-	/* Õû¸öÍ¼ĞÎ½çÃæµÄÖ÷¿ò¼ÜÇøÓòµÄ²Î¿¼×ø±êÆğÊ¼Î»ÖÃ(×óÉÏ½Ç£©
-	   - ×¢£ºÓÎÏ·Ö÷¿ò¼Ü£¬³ıÁËÓĞ°üº¬mĞĞnÁĞµÄÉ«¿éµÄÍâ¿òÍâ£¬»¹ÓĞÉÏ×´Ì¬À¸£¨0/1ĞĞ£©/ÏÂ×´Ì¬À¸£¨0/1ĞĞ£©/ĞĞºÅÏÔÊ¾£¨0/2ÁĞ£©/ÁĞ±êÏÔÊ¾ÇøÓò£¨0/1ĞĞ£©
-	   -     ÔÚÉÏÊöÖµ¸÷²»ÏàÍ¬µÄÇé¿öÏÂ£¬start_x/start_yµÄÖµÊÇ²»Í¬µÄ */
+	/* ã€ä¸‹é¢è¿™å››ä¸ªå€¼ä¸æ˜¯é€šè¿‡è®¾ç½®å‡½æ•°ç›´æ¥è®¾ç½®çš„ã€‘ */
+	/* æ•´ä¸ªå›¾å½¢ç•Œé¢çš„ä¸»æ¡†æ¶åŒºåŸŸçš„å‚è€ƒåæ ‡èµ·å§‹ä½ç½®(å·¦ä¸Šè§’ï¼‰
+	   - æ³¨ï¼šæ¸¸æˆä¸»æ¡†æ¶ï¼Œé™¤äº†æœ‰åŒ…å«mè¡Œnåˆ—çš„è‰²å—çš„å¤–æ¡†å¤–ï¼Œè¿˜æœ‰ä¸ŠçŠ¶æ€æ ï¼ˆ0/1è¡Œï¼‰/ä¸‹çŠ¶æ€æ ï¼ˆ0/1è¡Œï¼‰/è¡Œå·æ˜¾ç¤ºï¼ˆ0/2åˆ—ï¼‰/åˆ—æ ‡æ˜¾ç¤ºåŒºåŸŸï¼ˆ0/1è¡Œï¼‰
+	   -     åœ¨ä¸Šè¿°å€¼å„ä¸ç›¸åŒçš„æƒ…å†µä¸‹ï¼Œstart_x/start_yçš„å€¼æ˜¯ä¸åŒçš„ */
 	int start_x;
 	int start_y;
 
-	/* cmd´°¿ÚµÄ´óĞ¡ */
-	int lines;		//ÎªÁË¸øÖĞÎÄÊäÈë·¨ÌáÊ¾ĞĞ¼°ÔËĞĞ½áÊøµÄÌáÊ¾ĞÅÏ¢Áô¿Õ¼ä£¬ÒªÇóÔÚ¼ÆËãµÃµ½µÄ½á¹û»ù´¡ÉÏ£¨ÉÏ¶îÍâ¿Õ¼ä+ÉÏ×´Ì¬À¸+ÁĞ±êÏÔÊ¾+Ö÷ÇøÓò+ÏÂ×´Ì¬À¸£©+ 4£¨1ÖĞÎÄÊäÈë·¨ÌáÊ¾ĞĞ+3Ô¤Áô¿ÕĞĞ£©
+	/* cmdçª—å£çš„å¤§å° */
+	int lines;		//ä¸ºäº†ç»™ä¸­æ–‡è¾“å…¥æ³•æç¤ºè¡ŒåŠè¿è¡Œç»“æŸçš„æç¤ºä¿¡æ¯ç•™ç©ºé—´ï¼Œè¦æ±‚åœ¨è®¡ç®—å¾—åˆ°çš„ç»“æœåŸºç¡€ä¸Šï¼ˆä¸Šé¢å¤–ç©ºé—´+ä¸ŠçŠ¶æ€æ +åˆ—æ ‡æ˜¾ç¤º+ä¸»åŒºåŸŸ+ä¸‹çŠ¶æ€æ ï¼‰+ 4ï¼ˆ1ä¸­æ–‡è¾“å…¥æ³•æç¤ºè¡Œ+3é¢„ç•™ç©ºè¡Œï¼‰
 	int cols;
 
-	/* ¡¾ÏÂÃæÔÊĞíÌí¼ÓÄãÈÏÎªĞèÒªµÄÖµ£¬ÕâĞ©Öµ²»ÄÜÍ¨¹ıÉèÖÃº¯ÊıÖ±½ÓÉèÖÃ£¬Ö»ÊÇÎªÁË·½±ã³ÌĞòÖĞµ÷ÓÃ(²»ĞèÒªÃ¿´ÎÖØ¸´¼ÆËã)
-		 ÒòÎªÒıÈëÁË cmd_tgmw_tools.lib£¬ÎªÁË±£³ÖÁ½ÕßµÄ½á¹¹ÌåÒ»ÖÂ£¬ÉèÖÃÕâ²¿·Ö´óĞ¡Îª64×Ö½Ú£¨Ä¿Ç°ÊÇpad£©£¬
-		 Èç¹ûĞèÒªÌí¼ÓÏàÓ¦ÄÚÈİ£¬Çë±£³ÖÌí¼ÓÄÚÈİ+Ìî³ä×Ö½Ú=64×Ö½Ú£¬
-		   ÀıÈç£ºint data1;
+	/* ã€ä¸‹é¢å…è®¸æ·»åŠ ä½ è®¤ä¸ºéœ€è¦çš„å€¼ï¼Œè¿™äº›å€¼ä¸èƒ½é€šè¿‡è®¾ç½®å‡½æ•°ç›´æ¥è®¾ç½®ï¼Œåªæ˜¯ä¸ºäº†æ–¹ä¾¿ç¨‹åºä¸­è°ƒç”¨(ä¸éœ€è¦æ¯æ¬¡é‡å¤è®¡ç®—)
+		 å› ä¸ºå¼•å…¥äº† cmd_tgmw_tools.libï¼Œä¸ºäº†ä¿æŒä¸¤è€…çš„ç»“æ„ä½“ä¸€è‡´ï¼Œè®¾ç½®è¿™éƒ¨åˆ†å¤§å°ä¸º64å­—èŠ‚ï¼ˆç›®å‰æ˜¯padï¼‰ï¼Œ
+		 å¦‚æœéœ€è¦æ·»åŠ ç›¸åº”å†…å®¹ï¼Œè¯·ä¿æŒæ·»åŠ å†…å®¹+å¡«å……å­—èŠ‚=64å­—èŠ‚ï¼Œ
+		   ä¾‹å¦‚ï¼šint data1;
 				 int data2;
-				 char pad[56]; ¡¿ */
+				 char pad[56]; ã€‘ */
 	char pad[64];
 
 } CONSOLE_GRAPHICS_INFO;
 
-/* ¶¨ÒåÉ«¿éµÄËÄÖÖÒÆ¶¯·½Ïò */
+/* å®šä¹‰è‰²å—çš„å››ç§ç§»åŠ¨æ–¹å‘ */
 #define DOWN_TO_UP		0
 #define UP_TO_DOWN		1
 #define RIGHT_TO_LEFT	2
 #define LEFT_TO_RIGHT	3
 
-/* ÉèÖÃÕû¸ö´°¿ÚµÄÄ³Ğ©²ÎÊı */
+/* è®¾ç½®æ•´ä¸ªçª—å£çš„æŸäº›å‚æ•° */
 int gmw_set_rowcol(CONSOLE_GRAPHICS_INFO *const pCGI, const int row, const int col);
 int gmw_set_color(CONSOLE_GRAPHICS_INFO *const pCGI, const int bgcolor = COLOR_BLACK, const int fgcolor = COLOR_WHITE, const bool cascade = true);
 int gmw_set_font(CONSOLE_GRAPHICS_INFO *const pCGI, const char *fontname = "Terminal", const int fs_high = 16, const int fs_width = 8);
 int gmw_set_delay(CONSOLE_GRAPHICS_INFO *const pCGI, const int type, const int delay_ms);
 int gmw_set_ext_rowcol(CONSOLE_GRAPHICS_INFO *const pCGI, const int up_lines = 0, const int down_lines = 0, const int left_cols = 0, const int right_cols = 0);
 
-/* ÉèÖÃÕû¸öÓÎÏ·Ö÷¿ò¼ÜµÄ²ÎÊı */
+/* è®¾ç½®æ•´ä¸ªæ¸¸æˆä¸»æ¡†æ¶çš„å‚æ•° */
 int gmw_set_frame_default_linetype(CONSOLE_GRAPHICS_INFO *const pCGI, const int type);
-int gmw_set_frame_linetype(CONSOLE_GRAPHICS_INFO *const pCGI, const char *top_left = "¨X", const char *lower_left = "¨^", const char *top_right = "¨[",
-								const char *lower_right = "¨a",	const char *h_normal = "¨T", const char *v_normal = "¨U", const char *h_top_separator = "¨j", 
-									const char *h_lower_separator = "¨m", const char *v_left_separator = "¨d", const char *v_right_separator = "¨g", const char *mid_separator = "¨p");
+int gmw_set_frame_linetype(CONSOLE_GRAPHICS_INFO *const pCGI, const char *top_left = "â•”", const char *lower_left = "â•š", const char *top_right = "â•—",
+								const char *lower_right = "â•",	const char *h_normal = "â•", const char *v_normal = "â•‘", const char *h_top_separator = "â•¦", 
+									const char *h_lower_separator = "â•©", const char *v_left_separator = "â• ", const char *v_right_separator = "â•£", const char *mid_separator = "â•¬");
 int gmw_set_frame_style(CONSOLE_GRAPHICS_INFO *const pCGI, const int block_width = 2, const int block_high = 1, const bool separator = true);
 int gmw_set_frame_color(CONSOLE_GRAPHICS_INFO *const pCGI, const int bgcolor = -1, const int fgcolor = -1);
 
-/* ÉèÖÃÃ¿¸öÉ«¿éµÄ²ÎÊı */
+/* è®¾ç½®æ¯ä¸ªè‰²å—çš„å‚æ•° */
 int gmw_set_block_default_linetype(CONSOLE_GRAPHICS_INFO *const pCGI, const int def_type);
-int gmw_set_block_linetype(CONSOLE_GRAPHICS_INFO *const pCGI, const char *top_left = "¨X", const char *lower_left = "¨^", const char *top_right = "¨[",
-								const char *lower_right = "¨a", const char *h_normal = "¨T", const char *v_normal = "¨U");
+int gmw_set_block_linetype(CONSOLE_GRAPHICS_INFO *const pCGI, const char *top_left = "â•”", const char *lower_left = "â•š", const char *top_right = "â•—",
+								const char *lower_right = "â•", const char *h_normal = "â•", const char *v_normal = "â•‘");
 int gmw_set_block_border_switch(CONSOLE_GRAPHICS_INFO *const pCGI, const bool on_off = false);
 
-/* ÉèÖÃÊÇ·ñĞèÒªÉÏÏÂ×´Ì¬À¸¼°ÑÕÉ«£¬·Ö¿ªÁ½¸öº¯ÊıµÄÄ¿µÄÊÇcolor¿ÉÄÜÔÚ¸Ä±äÕû¸öÆÁÄ»ÑÕÉ«ÊÇĞèÒª¼¶Áªµ÷ÓÃ */
+/* è®¾ç½®æ˜¯å¦éœ€è¦ä¸Šä¸‹çŠ¶æ€æ åŠé¢œè‰²ï¼Œåˆ†å¼€ä¸¤ä¸ªå‡½æ•°çš„ç›®çš„æ˜¯colorå¯èƒ½åœ¨æ”¹å˜æ•´ä¸ªå±å¹•é¢œè‰²æ˜¯éœ€è¦çº§è”è°ƒç”¨ */
 int gmw_set_status_line_switch(CONSOLE_GRAPHICS_INFO *const pCGI, const int type, const bool on_off = true);
 int gmw_set_status_line_color(CONSOLE_GRAPHICS_INFO *const pCGI, const int type, const int normal_bgcolor = -1, const int normal_fgcolor = -1, const int catchy_bgcolor = -1, const int catchy_fgcolor = -1);
 
-/* ÉèÖÃÊÇ·ñĞèÒªĞĞºÅÁĞ±ê */
+/* è®¾ç½®æ˜¯å¦éœ€è¦è¡Œå·åˆ—æ ‡ */
 int gmw_set_rowno_switch(CONSOLE_GRAPHICS_INFO *const pCGI, const bool on_off = false);
 int gmw_set_colno_switch(CONSOLE_GRAPHICS_INFO *const pCGI, const bool on_off = false);
 
-/* ÓÃÈ±Ê¡Öµ×öÒ»¸öÈ«¾Ö³õÊ¼»¯ */
+/* ç”¨ç¼ºçœå€¼åšä¸€ä¸ªå…¨å±€åˆå§‹åŒ– */
 int gmw_init(CONSOLE_GRAPHICS_INFO *const pCGI, const int row = 10, const int col = 10, const int bgcolor = COLOR_BLACK, const int fgcolor = COLOR_WHITE);
-/* µ÷ÊÔÓÃ - ´òÓ¡ CONSOLE_GRAPHICS_INFO ½á¹¹ÌåÖĞµÄ¸÷³ÉÔ±Öµ */
+/* è°ƒè¯•ç”¨ - æ‰“å° CONSOLE_GRAPHICS_INFO ç»“æ„ä½“ä¸­çš„å„æˆå‘˜å€¼ */
 int gmw_print(const CONSOLE_GRAPHICS_INFO *const pCGI);
 
-/* »­ÓÎÏ·Ö÷¿ò¼Ü */
+/* ç”»æ¸¸æˆä¸»æ¡†æ¶ */
 int gmw_draw_frame(const CONSOLE_GRAPHICS_INFO *const pCGI);
-/* ÔÚÉÏÏÂ×´Ì¬À¸ÉÏÏÔÊ¾ĞÅÏ¢ */
+/* åœ¨ä¸Šä¸‹çŠ¶æ€æ ä¸Šæ˜¾ç¤ºä¿¡æ¯ */
 int gmw_status_line(const CONSOLE_GRAPHICS_INFO *const pCGI, const int type, const char *msg, const char *catchy_msg = NULL);
-/* »­Ò»¸öÉ«¿é */
+/* ç”»ä¸€ä¸ªè‰²å— */
 int gmw_draw_block(const CONSOLE_GRAPHICS_INFO *const pCGI, const int row_no, const int col_no, const int bdi_value, const BLOCK_DISPLAY_INFO *const bdi);
-/* ÒÆ¶¯Ò»¸öÉ«¿é */
+/* ç§»åŠ¨ä¸€ä¸ªè‰²å— */
 int gmw_move_block(const CONSOLE_GRAPHICS_INFO *const pCGI, const int row_no, const int col_no, const int bdi_value, const int blank_bdi_value, const BLOCK_DISPLAY_INFO *const bdi, const int direction, const int distance);
-/* ¶Á¼üÅÌºÍÊó±ê */
+/* è¯»é”®ç›˜å’Œé¼ æ ‡ */
 int gmw_read_keyboard_and_mouse(const CONSOLE_GRAPHICS_INFO *const pCGI, int &MAction, int &MRow, int &MCol, int &KeyCode1, int &KeyCode2, const bool update_lower_status_line = true);
